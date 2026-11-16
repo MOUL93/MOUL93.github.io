@@ -1,0 +1,163 @@
+/* moospace site: one stylesheet for every page.
+   Colours are from the Endesga 32 palette the games use (src/gfx/sprites.ts PAL).
+   Galmuri11 is a 12px bitmap design: use it at 12 / 24 / 36px so its pixels stay on the grid. */
+
+@font-face {
+  font-family: 'Galmuri11';
+  src: url('/fonts/Galmuri11.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --ink: #181425;      /* K */
+  --panel: #262b44;    /* k */
+  --edge: #3a4466;     /* n */
+  --dim: #8b9bb4;      /* s */
+  --text: #c0cbdc;     /* l */
+  --white: #ffffff;    /* W */
+  --gold: #fee761;     /* Y */
+  --orange: #feae34;   /* y */
+  --rust: #be4a2f;     /* o */
+  --cyan: #2ce8f5;     /* T */
+  --blue: #0099db;     /* B */
+  --navy: #124e89;     /* b */
+  --green: #63c74d;    /* G */
+  --pixel: 'Galmuri11', ui-monospace, monospace;
+  --body: system-ui, -apple-system, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font: 16px/1.7 var(--body);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+img { max-width: 100%; height: auto; }
+/* Only for images drawn at a whole multiple of their pixel grid (icons). Screenshots and banners
+   are shown smaller than their files, where nearest-neighbour sampling would chew up the pixels. */
+.pixel, img.pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:hover { color: var(--white); }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+/* ---- header / footer */
+.site-head {
+  border-bottom: 4px solid var(--edge);
+  background: var(--panel);
+}
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+.brand { font: 24px/1 var(--pixel); color: var(--white); text-decoration: none; letter-spacing: 1px; }
+.brand span { color: var(--gold); }
+.site-nav { display: flex; gap: 16px; font: 12px/1 var(--pixel); }
+.site-nav a { color: var(--text); text-decoration: none; }
+.site-nav a:hover { color: var(--gold); }
+
+.site-foot {
+  margin-top: 64px;
+  border-top: 4px solid var(--edge);
+  background: var(--panel);
+  padding: 24px 0 32px;
+  font-size: 14px;
+  color: var(--dim);
+}
+.site-foot p { margin: 4px 0; }
+.site-foot a { color: var(--text); }
+
+/* ---- headings */
+h1, h2, h3, .pixel-text { font-family: var(--pixel); font-weight: 400; line-height: 1.4; }
+h1 { font-size: 36px; color: var(--white); margin: 0 0 8px; }
+h2 { font-size: 24px; color: var(--gold); margin: 48px 0 16px; }
+h3 { font-size: 24px; color: var(--white); margin: 0 0 8px; }
+@media (max-width: 420px) { h1 { font-size: 24px; } }
+
+.lead { font-size: 18px; color: var(--white); margin: 8px 0 0; }
+.muted { color: var(--dim); }
+
+/* ---- panels: square corners with a stepped pixel edge */
+.panel {
+  background: var(--panel);
+  border: 4px solid var(--edge);
+  box-shadow: 0 4px 0 0 #0d0b14;
+  padding: 16px;
+}
+
+/* ---- buttons, like the game's (flat colour, darker bottom edge) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 20px;
+  font: 12px/1 var(--pixel); font-size: 24px;
+  color: var(--ink); background: var(--orange);
+  border: 0; border-bottom: 4px solid var(--rust);
+  text-decoration: none;
+}
+.btn:hover { color: var(--ink); filter: brightness(1.08); }
+.btn.blue { background: var(--blue); color: var(--white); border-bottom-color: var(--navy); }
+.btn.small { font-size: 12px; min-height: 36px; padding: 0 14px; }
+.btn[aria-disabled='true'] { background: var(--edge); color: var(--dim); border-bottom-color: #262b44; cursor: default; filter: none; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+/* ---- studio home */
+.hero-studio { padding: 48px 0 8px; }
+.games { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
+.game-card { display: flex; flex-direction: column; padding: 0; text-decoration: none; color: var(--text); }
+.game-card:hover { border-color: var(--blue); color: var(--text); }
+.game-card img { display: block; width: 100%; aspect-ratio: 1024 / 578; object-fit: cover; border-bottom: 4px solid var(--edge); }
+.game-card .body { padding: 14px 16px 16px; }
+.game-card h3 { margin-bottom: 4px; }
+.game-card p { margin: 0; font-size: 15px; }
+.tag { display: inline-block; margin-top: 10px; font: 12px/1 var(--pixel); color: var(--ink); background: var(--green); padding: 4px 6px; }
+
+/* ---- game page */
+.game-hero { padding: 24px 0 0; }
+.game-hero .banner { display: block; width: 100%; border: 4px solid var(--edge); }
+.title-row { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
+.title-row img { width: 88px; height: 88px; border: 4px solid var(--edge); flex: none; }
+.title-row h1 { margin: 0; }
+.title-row .sub { font: 12px/1.4 var(--pixel); color: var(--dim); margin: 4px 0 0; }
+
+.store-note { font: 12px/1.6 var(--pixel); color: var(--dim); margin: 10px 0 0; }
+
+.shots {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(62%, 240px);
+  gap: 12px; overflow-x: auto; padding: 4px 0 12px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+}
+.shots figure { margin: 0; scroll-snap-align: start; }
+.shots img { display: block; width: 100%; aspect-ratio: 720 / 1280; border: 4px solid var(--edge); background: var(--panel); }
+.shots figcaption { font: 12px/1.5 var(--pixel); color: var(--dim); margin-top: 6px; }
+.shots-hint { font: 12px/1 var(--pixel); color: var(--dim); margin: 0 0 8px; }
+
+.features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.features .panel h3 { font-size: 12px; color: var(--gold); margin-bottom: 6px; }
+.features .panel p { margin: 0; font-size: 15px; }
+
+.facts { margin: 0; padding: 0; list-style: none; }
+.facts li { padding: 8px 0; border-bottom: 2px dashed var(--edge); }
+.facts li:last-child { border-bottom: 0; }
+
+/* ---- documents (privacy policy) */
+.doc { max-width: 720px; }
+.doc h1 { font-size: 24px; margin-top: 40px; }
+.doc h2 { font-size: 16px; font-family: var(--body); font-weight: 700; color: var(--white); margin: 32px 0 8px; }
+.doc .meta { color: var(--dim); font-size: 14px; }
+.doc hr { border: 0; border-top: 4px solid var(--edge); margin: 48px 0; }
+.doc ul { padding-left: 1.3em; }
+.crumb { font: 12px/1 var(--pixel); margin: 24px 0 0; }
+.crumb a { color: var(--dim); text-decoration: none; }
+.crumb a:hover { color: var(--gold); }
+
+/* ---- 404 */
+.lost { text-align: center; padding: 72px 0 24px; }
+.lost .big { font: 36px/1 var(--pixel); color: var(--gold); font-size: 72px; margin: 0; }
