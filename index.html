@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>moospace · 무스페이스</title>
 <meta name="description" content="게임 개발사 무스페이스(moospace)의 게임을 소개합니다.">
-<meta name="theme-color" content="#0e1014">
+<meta name="theme-color" content="#0a0b0f">
 <link rel="canonical" href="https://moul93.github.io/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
@@ -23,52 +23,97 @@
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<header class="site-head">
+<header class="head">
   <div class="wrap">
-    <a class="brand" href="/">moospace</a>
-    <nav class="site-nav" aria-label="사이트">
-      <a href="#games">게임</a>
-      <a href="#contact">문의</a>
+    <a class="mark" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="20" cy="12" r="4.5" fill="currentColor"/></svg>moospace</a>
+    <nav class="nav" aria-label="사이트">
+      <a href="#games">게임</a><a href="#studio">스튜디오</a><a href="#contact">문의</a>
     </nav>
+    <a class="pill" href="/bounce-guardian/"><span class="dot"></span><span class="long">바운스 가디언&nbsp;</span>출시 준비 중</a>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>무스페이스</h1>
-    <p>무스페이스(moospace)는 모바일 게임을 만드는 개발사입니다.</p>
-  </section>
-
-  <section id="games" aria-labelledby="games-title">
-    <h2 class="section-title" id="games-title">게임</h2>
-    <!-- One <a class="game-card"> per game, newest first. The grid lays out 1, 2, 3 or 4 cards
-         on its own (see .games in assets/site.css). Key art: 16:9 or close to it. -->
-    <div class="games">
-      <a class="game-card" href="/bounce-guardian/">
-        <img class="art" src="/bounce-guardian/img/graphic.png" width="1024" height="578" alt="바운스 가디언 대표 이미지: 성벽 위로 몰려오는 슬라임과 몬스터들">
-        <div class="body">
-          <ul class="chips"><li>곧 출시</li><li>Android</li></ul>
-          <h3>바운스 가디언</h3>
-          <p>공을 튕겨 몰려오는 몬스터를 부수고 성벽을 지키는 벽돌깨기 + 디펜스 로그라이크.</p>
-          <span class="more">자세히 보기 →</span>
+<main>
+  <!-- Featured game. To feature another game later, swap the images, text and links here. -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="bg"><img src="/bounce-guardian/img/graphic.png" alt=""></div>
+    <div class="wrap inner">
+      <div>
+        <span class="eyebrow">대표작 · Android 곧 출시</span>
+        <h1 id="hero-title">바운스 가디언</h1>
+        <p class="tag">공을 튕겨 몰려오는 몬스터를 부수고 성벽을 지켜라. 벽돌깨기와 디펜스가 만난 도트 로그라이크.</p>
+        <ul class="facts-inline"><li>무료</li><li>오프라인 플레이</li><li>스테이지 40개</li><li>모드 4종</li></ul>
+        <div class="cta">
+          <a class="btn primary" href="/bounce-guardian/">게임 살펴보기 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn ghost" href="/bounce-guardian/#shots">스크린샷 보기</a>
         </div>
-      </a>
+        <div class="mobile-shot"><img src="/bounce-guardian/img/graphic.png" width="1024" height="578" alt="바운스 가디언 대표 이미지: 성벽 위로 몰려오는 슬라임 킹과 몬스터들"></div>
+      </div>
+      <div class="phones" aria-hidden="true">
+        <div class="phone"><img src="/bounce-guardian/img/shot-1-battle.png" alt=""></div>
+        <div class="phone"><img src="/bounce-guardian/img/shot-2-boss.png" alt=""></div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" aria-labelledby="contact-title">
-    <h2 class="section-title" id="contact-title">문의</h2>
+  <section class="section" id="games" aria-labelledby="games-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Games</span><h2 id="games-title">무스페이스의 게임</h2></div>
+      </div>
+      <!-- One <a class="game"> card per game, newest first. The grid lays out any number of cards
+           by itself (see .shelf in /assets/site.css). Key art: 16:9 or close to it. -->
+      <div class="shelf">
+        <a class="game" href="/bounce-guardian/">
+          <div class="art"><img src="/bounce-guardian/img/graphic.png" width="1024" height="578" alt="바운스 가디언 대표 이미지"></div>
+          <div class="body">
+            <div class="meta"><span class="status">● 곧 출시</span><span>Android</span><span>·</span><span>무료</span></div>
+            <h3>바운스 가디언</h3>
+            <p>벽돌깨기 + 디펜스 도트 로그라이크. 강화 47종으로 매판 다른 빌드를 짜고, 스테이지 40개와 무한 모드에 도전하세요.</p>
+            <span class="go">자세히 보기 <span>→</span></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="studio" aria-labelledby="studio-title">
+    <div class="wrap studio">
+      <div>
+        <span class="eyebrow">Studio</span>
+        <h2 class="lead" id="studio-title">무스페이스는 모바일 게임을 만드는 개발사입니다. <em>첫 게임 바운스 가디언을 안드로이드로 준비하고 있어요.</em></h2>
+        <p>문의, 버그 제보, 제휴 제안은 메일로 받습니다. 게임마다 개인정보처리방침을 따로 두고, 이 사이트는 방문 기록이나 쿠키를 남기지 않습니다.</p>
+      </div>
+      <div>
+        <span class="eyebrow">소식</span>
+        <ul class="news">
+          <li><span class="when">진행 중</span><div><b>바운스 가디언 안드로이드 출시 준비 중</b><span>구글 플레이 출시를 준비하고 있어요.</span></div></li>
+          <li><time datetime="2026-11">2026.11</time><div><b>웹사이트 공개</b><span>게임 소개와 개인정보처리방침을 이곳에 모았습니다.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" aria-labelledby="contact-title">
     <div class="contact">
-      <p>게임 이용, 제휴, 개인정보 관련 문의는 메일로 보내 주세요.</p>
+      <div><h2 id="contact-title">문의</h2><p>게임 이용, 제휴, 개인정보 관련 문의는 메일로 보내 주세요.</p></div>
       <a class="mail" href="mailto:moospacecontact@gmail.com">moospacecontact@gmail.com</a>
     </div>
   </section>
 </main>
 
-<footer class="site-foot">
+<footer class="foot">
   <div class="wrap">
-    <p>무스페이스 (moospace) · <a href="mailto:moospacecontact@gmail.com">moospacecontact@gmail.com</a></p>
-    <p>개인정보처리방침: <a href="/bounce-guardian/privacy.html">바운스 가디언</a></p>
+    <div class="grid">
+      <div class="brand-col">
+        <a class="mark" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="20" cy="12" r="4.5" fill="currentColor"/></svg>moospace</a>
+        <p>모바일 게임을 만드는 개발사 무스페이스.</p>
+      </div>
+      <div><h4>게임</h4><ul><li><a href="/bounce-guardian/">바운스 가디언</a></li></ul></div>
+      <div><h4>정책</h4><ul><li><a href="/bounce-guardian/privacy.html">바운스 가디언 개인정보처리방침</a></li></ul></div>
+      <div><h4>문의</h4><ul><li><a href="mailto:moospacecontact@gmail.com">메일 보내기</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 moospace</span><span>이 사이트는 쿠키와 방문 분석을 쓰지 않습니다.</span></div>
   </div>
 </footer>
 </body>

@@ -1,113 +1,144 @@
-/* Bounce Guardian pages: the game's own pixel look, on top of /assets/site.css.
-   Every rule is scoped under <main class="game bounce"> so the shared studio header and
-   footer stay neutral. Colours are the Endesga 32 palette the game uses (src/gfx/sprites.ts PAL).
-   Galmuri11 is a 12px bitmap design: use it at 12 / 24 / 36px so its pixels stay on the grid.
-   The font is loaded only by pages that link this file. */
+/* Bounce Guardian pages: the game's own world (night sky, battlements, level-up cards, pixel
+   buttons) inside the studio frame. The header, footer and base styles come from /assets/site.css;
+   every rule here is scoped to <main class="bg"> (the privacy page is <main class="bg doc-page">),
+   so the studio header and footer never change. The sky starts at the studio's own black and the
+   page fades back to it before the footer, so moving between the studio and the game has no hard edge.
+   Colours: the game's Endesga 32 palette (src/gfx/sprites.ts PAL). Galmuri11 is loaded only here,
+   at 12 / 24 / 36px and larger multiples where possible so its pixels stay on the grid.
+   Motion (the bouncing ball, hover lifts) stops under prefers-reduced-motion. */
+@font-face { font-family: 'Galmuri11'; src: url('/bounce-guardian/fonts/Galmuri11.woff2') format('woff2'); font-display: swap; }
 
-@font-face {
-  font-family: 'Galmuri11';
-  src: url('/bounce-guardian/fonts/Galmuri11.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
-.bounce {
-  --ink: #181425;      /* K */
-  --panel: #262b44;    /* k */
-  --edge: #3a4466;     /* n */
-  --dim: #8b9bb4;      /* s */
-  --text: #c0cbdc;     /* l */
-  --white: #ffffff;    /* W */
-  --gold: #fee761;     /* Y */
-  --orange: #feae34;   /* y */
-  --rust: #be4a2f;     /* o */
-  --cyan: #2ce8f5;     /* T */
-  --blue: #0099db;     /* B */
-  --navy: #124e89;     /* b */
-  --green: #63c74d;    /* G */
+.bg {
+  --k: #181425; --panel: #262b44; --edge: #3a4466; --stone: #5a6988; --stone-2: #8b9bb4; --pale: #c0cbdc;
+  --gold: #fee761; --orange: #feae34; --rust: #be4a2f; --cyan: #2ce8f5; --blue: #0099db; --green: #63c74d; --pink: #f6757a; --purple: #b55088;
   --pixel: 'Galmuri11', ui-monospace, monospace;
-
-  display: block;
-  background: var(--ink);
-  color: var(--text);
-  padding-bottom: 72px;
+  color: var(--pale);
+  background: linear-gradient(180deg, var(--k) 0, var(--k) calc(100% - 160px), var(--bg) 100%);
 }
-/* the game's ink runs straight into the studio footer */
-.bounce + .site-foot { margin-top: 0; }
+.bg .pixel { image-rendering: pixelated; }
+.bg a { color: var(--cyan); }
+.bg + .foot { margin-top: 0; }
 
-/* Only for images drawn at a whole multiple of their pixel grid (icons). Screenshots and banners
-   are shown smaller than their files, where nearest-neighbour sampling would chew up the pixels. */
-.bounce .pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
+/* ---- A's breadcrumb, on the sky */
+.bg .crumb { display: flex; gap: 8px; align-items: center; margin: 0 0 32px; font-size: 14px; color: var(--stone-2); }
+.bg .crumb a { color: var(--pale); text-decoration: none; display: inline-flex; gap: 6px; align-items: center; transition: color .15s; }
+.bg .crumb a:hover { color: #fff; }
 
-.bounce a { color: var(--cyan); }
-.bounce a:hover { color: var(--white); }
-.bounce :focus-visible { outline-color: var(--gold); border-radius: 0; }
-
-/* ---- headings */
-.bounce h1, .bounce h2, .bounce h3 { font-family: var(--pixel); font-weight: 400; line-height: 1.4; letter-spacing: 0; }
-.bounce h1 { font-size: 36px; color: var(--white); margin: 0 0 8px; }
-.bounce h2 { font-size: 24px; color: var(--gold); margin: 48px 0 16px; }
-.bounce h3 { font-size: 24px; color: var(--white); margin: 0 0 8px; }
-@media (max-width: 420px) { .bounce h1 { font-size: 24px; } }
-
-.bounce .lead { font-size: 18px; color: var(--white); margin: 8px 0 0; }
-
-/* ---- panels: square corners, chunky edge */
-.bounce .panel {
-  background: var(--panel);
-  border: 4px solid var(--edge);
-  box-shadow: 0 4px 0 0 #0d0b14;
-  padding: 16px;
+/* ---- sky hero: begins at the studio's black, deepens into the game's night */
+.bg .sky { position: relative; overflow: hidden; padding: 28px 0 0;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 28% 46%, #c0cbdc 50%, transparent 51%),
+    radial-gradient(2px 2px at 46% 16%, #fee761 50%, transparent 51%), radial-gradient(1.5px 1.5px at 63% 34%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 78% 18%, #c0cbdc 50%, transparent 51%), radial-gradient(2px 2px at 90% 42%, #2ce8f5 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 6% 62%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 54% 60%, #c0cbdc 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 36% 8%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 84% 6%, #fff 50%, transparent 51%),
+    linear-gradient(180deg, #0a0b0f 0%, #120f1d 30%, #181425 55%, #262b44 100%); }
+.bg .sky .grid { display: grid; gap: 40px; align-items: end; }
+.bg .sky .badge { display: inline-flex; gap: 8px; align-items: center; font: 400 12px/1 var(--pixel); color: var(--k); background: var(--green); padding: 6px 8px; box-shadow: 0 3px 0 #265c42; }
+.bg h1 { margin: 20px 0 0; font: 400 clamp(48px, 10vw, 96px)/1.05 var(--pixel); color: var(--gold); text-shadow: 4px 4px 0 var(--rust), 8px 8px 0 #0d0b17; letter-spacing: -.01em; }
+.bg .sky .sub { font: 400 clamp(18px, 2.4vw, 24px)/1.5 var(--pixel); color: #fff; margin: 18px 0 0; }
+.bg .sky p.desc { font-size: 17px; margin: 16px 0 0; max-width: 30em; color: var(--pale); }
+.bg .pbtns { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 28px; }
+.bg .pbtn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 12px; font: 400 24px/1 var(--pixel); color: var(--k); background: var(--orange); border-bottom: 5px solid var(--rust); text-decoration: none; transition: transform .1s, border-width .1s, filter .15s; }
+.bg .pbtn:hover { transform: translateY(-2px); filter: brightness(1.06); color: var(--k); }
+.bg .pbtn:active { transform: translateY(3px); border-bottom-width: 2px; }
+.bg .pbtn small { font-size: 12px; opacity: .8; }
+.bg .pbtn[aria-disabled='true'] { cursor: default; }
+.bg .pbtn[aria-disabled='true']:hover { transform: none; filter: none; }
+/* the secondary action is a plain link so the store button stands alone */
+.bg .jump { display: inline-flex; align-items: center; gap: 6px; font: 400 12px/1 var(--pixel); color: var(--pale); text-decoration: none; padding: 8px 0; border-bottom: 2px solid var(--edge); transition: color .15s, border-color .15s; }
+.bg .jump:hover { color: #fff; border-color: var(--gold); }
+@media (min-width: 960px) { .bg .pbtns { gap: 12px 24px; } .bg .pbtn { min-height: 56px; padding: 0 22px; } }
+.bg .pbtn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 0; }
+.bg .facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 20px 0 0; padding: 0; list-style: none; font: 400 12px/1 var(--pixel); color: var(--stone-2); }
+.bg .facts li::before { content: '■ '; color: var(--gold); }
+.bg .arena { position: relative; justify-self: center; width: min(100%, 320px); }
+.bg .pframe { border: 6px solid var(--edge); background: var(--k); box-shadow: 0 0 0 4px var(--k), 0 0 0 8px var(--stone), 10px 14px 0 8px rgba(0,0,0,.35); }
+.bg .pframe img { width: 100%; aspect-ratio: 720 / 1280; object-fit: cover; }
+.bg .ball { position: absolute; width: 14px; height: 14px; background: var(--cyan); box-shadow: 0 0 16px 4px rgba(44,232,245,.6); left: 6%; top: 30%; animation: bounce 3.2s linear infinite; }
+@keyframes bounce { 0% { transform: translate(0, 0); } 25% { transform: translate(-40px, 120px); } 50% { transform: translate(10px, 230px); } 75% { transform: translate(-30px, 110px); } 100% { transform: translate(0, 0); } }
+@media (prefers-reduced-motion: reduce) { .bg .ball { animation: none; } .bg * { transition: none !important; } }
+@media (min-width: 960px) {
+  .bg .sky { padding-top: 36px; }
+  .bg .sky .grid { grid-template-columns: 1.2fr 1fr; gap: 56px; }
+  .bg .arena { margin-bottom: -60px; z-index: 2; }
 }
 
-/* ---- buttons, like the game's (flat colour, darker bottom edge) */
-.bounce .btn {
-  min-height: 48px; padding: 0 20px; border-radius: 0;
-  font: 24px/1 var(--pixel);
-  color: var(--ink); background: var(--orange);
-  border: 0; border-bottom: 4px solid var(--rust);
-}
-.bounce .btn:hover { color: var(--ink); background: var(--orange); filter: brightness(1.08); }
-.bounce .btn.blue { background: var(--blue); color: var(--white); border-bottom-color: var(--navy); }
-.bounce .btn.small { font-size: 12px; min-height: 36px; padding: 0 14px; }
-.bounce .btn[aria-disabled='true'] { background: var(--edge); color: var(--dim); border-bottom-color: var(--panel); cursor: default; filter: none; }
-.bounce .btn-row { gap: 12px; margin-top: 20px; }
+/* ---- battlements */
+.bg .wall { position: relative; height: 72px; margin-top: 56px; background:
+  linear-gradient(var(--edge) 0 0) 0 100% / 100% 4px no-repeat,
+  repeating-linear-gradient(90deg, transparent 0 46px, #3a4466 46px 48px),
+  linear-gradient(#5a6988, #4b5876); }
+.bg .wall::before { content: ''; position: absolute; left: 0; right: 0; top: -20px; height: 20px; background: linear-gradient(90deg, #8b9bb4 0 60%, transparent 60%) 0 0 / 48px 20px repeat-x; }
+.bg .wall::after { content: ''; position: absolute; inset: 22px 0 auto; height: 2px; background: #3a4466; }
 
-/* ---- game page */
-.bounce .game-hero { padding: 24px 0 0; }
-.bounce .banner { display: block; width: 100%; border: 4px solid var(--edge); }
-.bounce .title-row { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
-.bounce .title-row img { width: 88px; height: 88px; border: 4px solid var(--edge); flex: none; } /* 80px icon + border */
-.bounce .title-row h1 { margin: 0; }
-.bounce .title-row .sub { font: 12px/1.4 var(--pixel); color: var(--dim); margin: 4px 0 0; }
+/* ---- sections */
+.bg .gs { padding: 80px 0 0; scroll-margin-top: 80px; }
+.bg .gs h2 { font: 400 clamp(24px, 4vw, 36px)/1.3 var(--pixel); color: #fff; margin: 0; }
+.bg .gs .lead { margin: 10px 0 28px; color: var(--stone-2); font-size: 17px; }
 
-.bounce .store-note { font: 12px/1.6 var(--pixel); color: var(--dim); margin: 10px 0 0; }
+/* ---- level-up cards as features */
+.bg .cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 700px) { .bg .cards { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1080px) { .bg .cards { grid-template-columns: repeat(3, 1fr); } }
+.bg .lv { --r: var(--stone-2); position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 14px; padding: 16px; background: var(--panel); border: 3px solid var(--r); box-shadow: 0 4px 0 #0d0b17; transition: transform .12s; }
+.bg .lv:hover { transform: translateY(-3px); }
+.bg .lv .ic { width: 56px; height: 56px; background: var(--k); border: 3px solid var(--r); display: grid; place-items: center; font: 400 24px/1 var(--pixel); color: var(--r); }
+.bg .lv .rar { position: absolute; right: 12px; top: 12px; font: 400 12px/1 var(--pixel); color: var(--r); }
+.bg .lv h3 { margin: 2px 0 0; font: 400 24px/1.2 var(--pixel); color: #fff; padding-right: 48px; }
+.bg .lv p { margin: 8px 0 0; font-size: 15px; color: var(--pale); grid-column: 1 / -1; }
+.bg .lv.rare { --r: var(--blue); } .bg .lv.legend { --r: var(--orange); } .bg .lv.curse { --r: var(--purple); } .bg .lv.evo { --r: var(--green); }
 
-.bounce .shots {
-  display: grid; grid-auto-flow: column; grid-auto-columns: min(62%, 240px);
-  gap: 12px; overflow-x: auto; padding: 4px 0 12px;
-  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-}
-.bounce .shots figure { margin: 0; scroll-snap-align: start; }
-.bounce .shots img { display: block; width: 100%; aspect-ratio: 720 / 1280; border: 4px solid var(--edge); background: var(--panel); }
-.bounce .shots figcaption { font: 12px/1.5 var(--pixel); color: var(--dim); margin-top: 6px; }
-.bounce .shots-hint { font: 12px/1 var(--pixel); color: var(--dim); margin: 0 0 8px; }
+/* ---- modes as stage select */
+.bg .modes { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .bg .modes { grid-template-columns: repeat(4, 1fr); } }
+.bg .mode { padding: 18px; background: var(--c); color: var(--k); border-bottom: 6px solid rgba(0,0,0,.3); }
+.bg .mode b { display: inline-grid; place-items: center; width: 32px; height: 32px; background: var(--k); color: var(--c); font: 400 24px/1 var(--pixel); }
+.bg .mode h3 { margin: 14px 0 0; font: 400 24px/1.2 var(--pixel); }
+.bg .mode p { margin: 6px 0 0; font-size: 15px; }
 
-.bounce .features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
-.bounce .features h3 { font-size: 12px; color: var(--gold); margin-bottom: 6px; }
-.bounce .features p { margin: 0; font-size: 15px; }
+/* ---- tilted screenshots */
+.bg .shots { display: grid; grid-auto-flow: column; grid-auto-columns: 200px; gap: 24px; overflow-x: auto; padding: 12px 8px 28px; scroll-snap-type: x mandatory; }
+.bg .shots figure { margin: 0; scroll-snap-align: start; }
+.bg .shots figure:nth-child(odd) { transform: rotate(-2deg); }
+.bg .shots figure:nth-child(even) { transform: rotate(2deg) translateY(10px); }
+.bg .shots .pframe { border-width: 5px; box-shadow: 0 0 0 3px var(--k), 0 0 0 6px var(--stone); }
+.bg .shots figcaption { margin-top: 12px; font: 400 12px/1.5 var(--pixel); color: var(--stone-2); text-align: center; }
 
-.bounce .facts { margin: 0; padding: 0; list-style: none; }
-.bounce .facts li { padding: 8px 0; border-bottom: 2px dashed var(--edge); }
-.bounce .facts li:last-child { border-bottom: 0; }
+/* ---- "곧 출시!" block */
+.bg .final { margin-top: 88px; padding: 40px 24px; background: var(--panel); border: 4px solid var(--edge); box-shadow: 0 6px 0 #0d0b17; text-align: center; }
+.bg .final h2 { font: 400 clamp(24px, 4vw, 36px)/1.3 var(--pixel); color: var(--gold); margin: 0; text-shadow: 3px 3px 0 var(--rust); }
+.bg .final p { margin: 14px auto 0; max-width: 36em; font-size: 15px; }
+.bg .final .pbtns { justify-content: center; }
+.bg .final .fine { margin-top: 20px; font-size: 14px; color: var(--stone-2); }
+.bg .final .fine a { color: var(--pale); }
+.bg .final .fine a:hover { color: #fff; }
+.bg .tail { height: 120px; }
 
-.bounce .credit { font-size: 13px; color: var(--dim); margin: 32px 0 0; }
-
-/* ---- the privacy policy, in the game's style */
-.bounce.doc-page .doc h1 { font-size: 24px; margin-top: 40px; }
-.bounce.doc-page .doc h2 { font: 700 16px/1.4 var(--sans); color: var(--white); margin: 32px 0 8px; }
-.bounce.doc-page .doc .meta { color: var(--dim); }
-.bounce.doc-page .doc hr { border-top: 4px solid var(--edge); }
-.bounce .crumb { font: 12px/1 var(--pixel); margin: 0; padding-top: 24px; }
-.bounce .crumb a { color: var(--dim); text-decoration: none; }
-.bounce .crumb a:hover { color: var(--gold); }
+/* ---- privacy page: A's reading frame, the game's colours as accents */
+.bg.doc-page { background: var(--bg); }
+.bg .doc-head { position: relative; overflow: hidden; padding: 28px 0 44px; background:
+    radial-gradient(1.5px 1.5px at 18% 30%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 72% 22%, #c0cbdc 50%, transparent 51%),
+    radial-gradient(2px 2px at 88% 60%, #fee761 50%, transparent 51%), radial-gradient(1.5px 1.5px at 40% 70%, #fff 50%, transparent 51%),
+    linear-gradient(180deg, #0a0b0f 0%, #181425 100%);
+  border-bottom: 4px solid var(--edge); }
+.bg .doc-head .t { display: flex; gap: 16px; align-items: center; }
+.bg .doc-head img { width: 64px; height: 64px; flex: none; box-shadow: 0 0 0 3px var(--k), 0 0 0 6px var(--stone); }
+.bg .doc-head .ttl { margin: 0; font: 400 clamp(28px, 6vw, 40px)/1.15 var(--pixel); color: var(--gold); text-shadow: 3px 3px 0 var(--rust); } /* the policy text brings its own h1 */
+.bg .doc-head .t p { margin: 8px 0 0; font-size: 14px; color: var(--stone-2); }
+.bg .doc-head .t p.ttl { margin: 0; font-size: clamp(28px, 6vw, 40px); color: var(--gold); }
+.bg .doc { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; font-size: 16px; line-height: 1.85; color: #c8ccd4; }
+.bg .doc h1 { font: 700 26px/1.3 var(--sans); color: #fff; margin: 0 0 6px; letter-spacing: -.02em; text-shadow: none; }
+.bg .doc h1[lang='en'] { margin-top: 0; }
+.bg .doc h2 { display: flex; gap: 10px; align-items: baseline; font: 700 18px/1.4 var(--sans); color: #fff; margin: 40px 0 10px; letter-spacing: -.01em; }
+.bg .doc h2::before { content: ''; flex: none; width: 8px; height: 8px; background: var(--gold); box-shadow: 2px 2px 0 var(--rust); transform: translateY(-2px); }
+.bg .doc .meta { font-size: 14px; color: var(--stone-2); margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.bg .doc p, .bg .doc li { color: #c8ccd4; }
+.bg .doc ul { padding-left: 1.2em; }
+.bg .doc li::marker { color: var(--gold); }
+.bg .doc a { color: var(--cyan); }
+.bg .doc a:hover { color: #fff; }
+.bg .doc hr { border: 0; height: 20px; margin: 56px 0; background: linear-gradient(90deg, var(--edge) 0 60%, transparent 60%) 0 0 / 32px 12px repeat-x; opacity: .8; }
+.bg .doc-end { max-width: 720px; margin: 0 auto; padding: 8px 0 96px; }
+.bg .doc-end a { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); transition: background .15s; }
+.bg .doc-end a:hover { background: rgba(255,255,255,.12); }

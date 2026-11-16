@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>바운스 가디언 · 벽돌깨기 + 디펜스 도트 로그라이크</title>
 <meta name="description" content="공을 튕겨 몰려오는 몬스터를 부수고 성벽을 지켜라! 벽돌깨기와 디펜스가 만난 도트 로그라이크.">
-<meta name="theme-color" content="#181425">
+<meta name="theme-color" content="#0a0b0f">
 <link rel="canonical" href="https://moul93.github.io/bounce-guardian/">
 <link rel="icon" type="image/png" href="/bounce-guardian/img/icon-80.png">
 <link rel="apple-touch-icon" href="/bounce-guardian/img/icon-160.png">
@@ -25,112 +25,107 @@
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<header class="site-head">
+<header class="head solid">
   <div class="wrap">
-    <a class="brand" href="/">moospace</a>
-    <nav class="site-nav" aria-label="사이트">
-      <a href="#features">특징</a>
-      <a href="#contact">문의</a>
-    </nav>
+    <a class="mark" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="20" cy="12" r="4.5" fill="currentColor"/></svg>moospace</a>
+    <nav class="nav" aria-label="사이트"><a href="/#games">게임</a><a href="/#studio">스튜디오</a><a href="/#contact">문의</a></nav>
+    <a class="pill" href="#play"><span class="dot"></span><span class="long">Android&nbsp;</span>출시 준비 중</a>
   </div>
 </header>
 
-<main class="game bounce">
-<div class="wrap">
-  <section class="game-hero">
-    <img class="banner" src="img/graphic.png" width="1024" height="578" alt="바운스 가디언: 튕기고 · 부수고 · 지켜라! 성벽 위로 슬라임 킹과 몬스터들이 몰려온다">
-    <div class="title-row">
-      <img class="pixel" src="img/icon-80.png" width="80" height="80" alt="">
-      <div>
-        <h1>바운스 가디언</h1>
-        <p class="sub">BOUNCE GUARDIAN · moospace</p>
+<main class="bg">
+  <section class="sky">
+    <div class="wrap">
+      <p class="crumb"><a href="/">← 게임</a><span>/</span><span>바운스 가디언</span></p>
+      <div class="grid">
+        <div>
+          <span class="badge">● ANDROID 곧 출시</span>
+          <h1>바운스<br>가디언</h1>
+          <p class="sub">튕기고 · 부수고 · 지켜라!</p>
+          <p class="desc">드래그 한 번으로 대포를 겨누면 공이 벽과 몬스터 사이를 튕기며 적을 쓸어 냅니다. 몬스터 무리가 성벽을 무너뜨리기 전에 막아 내세요.</p>
+          <div class="pbtns" id="play">
+            <!-- GOOGLE PLAY: before launch this is a "coming soon" placeholder (not a link).
+                 After launch replace the <span> with the official badge, unchanged and localized (Korean),
+                 at least 28px tall with clear space of 1/4 of its height, linked to the store page:
+                 <a href="https://play.google.com/store/apps/details?id=com.moospace.bounceguardian"><img src="/bounce-guardian/img/google-play-badge.png" alt="Google Play에서 다운로드" height="56"></a>
+                 Badge files and rules: https://partnermarketinghub.withgoogle.com/brands/google-play/google-play/lockups-icons-badges/
+                 Do the same in the "곧 출시!" block below. See site/README.md. -->
+            <span class="pbtn" aria-disabled="true">Google Play <small>곧 출시</small></span>
+            <a class="jump" href="#shots">스크린샷 보기 ↓</a>
+          </div>
+          <ul class="facts"><li>무료</li><li>오프라인 플레이</li><li>moospace</li></ul>
+        </div>
+        <div class="arena" aria-hidden="true">
+          <span class="ball"></span>
+          <div class="pframe"><img src="/bounce-guardian/img/shot-1-battle.png" alt=""></div>
+        </div>
       </div>
     </div>
-    <p class="lead">공을 튕겨 몰려오는 몬스터를 부수고 성벽을 지켜라! 벽돌깨기와 디펜스가 만난 도트 로그라이크.</p>
-
-    <div class="btn-row">
-      <!-- Google Play: when the store page is live, replace this <span> with
-           <a class="btn" href="https://play.google.com/store/apps/details?id=com.moospace.bounceguardian">Google Play에서 받기</a>
-           and remove the "곧 출시" note below. -->
-      <span class="btn" aria-disabled="true">Google Play · 곧 출시</span>
-    </div>
-    <p class="store-note">안드로이드 출시를 준비하고 있어요.</p>
+    <div class="wall" aria-hidden="true"></div>
   </section>
 
-  <section aria-labelledby="shots-title">
-    <h2 id="shots-title">스크린샷</h2>
-    <p class="shots-hint">옆으로 넘겨 보세요 →</p>
-    <div class="shots">
-      <figure><img src="img/shot-1-battle.png" width="720" height="1280" alt="32웨이브 전투: 융합탄과 설치물, 화염 방사기가 몬스터 무리를 막는다"><figcaption>몰려오는 무리를 막아라</figcaption></figure>
-      <figure><img src="img/shot-2-boss.png" width="720" height="1280" alt="보스전: 용암 드레이크와 3연장포"><figcaption>5웨이브마다 보스</figcaption></figure>
-      <figure><img src="img/shot-7-evolution.png" width="720" height="1280" alt="진화 획득 연출" loading="lazy"><figcaption>대포와 공이 바뀌는 진화</figcaption></figure>
-      <figure><img src="img/shot-3-levelup.png" width="720" height="1280" alt="레벨업 강화 카드: 진화·전설·희귀" loading="lazy"><figcaption>레벨업마다 강화 선택</figcaption></figure>
-      <figure><img src="img/shot-4-tree.png" width="720" height="1280" alt="특성 트리 화면" loading="lazy"><figcaption>방향을 고르는 특성 트리</figcaption></figure>
-      <figure><img src="img/shot-5-stages.png" width="720" height="1280" alt="스테이지 목록 화면" loading="lazy"><figcaption>스테이지 40개</figcaption></figure>
-      <figure><img src="img/shot-8-guardian.png" width="720" height="1280" alt="가디언 목록 화면" loading="lazy"><figcaption>가디언 6종</figcaption></figure>
-      <figure><img src="img/shot-6-home.png" width="720" height="1280" alt="홈 화면" loading="lazy"><figcaption>홈</figcaption></figure>
-    </div>
-  </section>
+  <div class="wrap">
+    <section class="gs" aria-labelledby="f-title">
+      <h2 id="f-title">LEVEL UP!</h2>
+      <p class="lead">레벨이 오를 때마다 카드 한 장. 이 게임의 특징도 카드로 골랐어요.</p>
+      <div class="cards">
+        <div class="lv"><div class="ic">47</div><span class="rar">일반</span><h3>강화 47종</h3><p>화염·냉기·번개·독 속성, 폭발, 분열, 관통, 설치물, 성벽 포탑. 매판 다른 빌드.</p></div>
+        <div class="lv rare"><div class="ic">6</div><span class="rar">희귀</span><h3>속성 반응</h3><p>두 속성이 한 적에게 겹치면 터지는 반응 6가지와 모으면 켜지는 태그 세트 11종.</p></div>
+        <div class="lv evo"><div class="ic">11</div><span class="rar">진화</span><h3>진화 · 융합탄</h3><p>공과 대포가 다른 무기로. 진화 11종, 두 속성을 합친 융합탄 6종.</p></div>
+        <div class="lv legend"><div class="ic">7</div><span class="rar">전설</span><h3>규칙을 바꾸는 전설</h3><p>전설 강화 7종과 보스를 쓰러뜨리면 고르는 유물 12종.</p></div>
+        <div class="lv curse"><div class="ic">6</div><span class="rar">저주</span><h3>대가가 따르는 저주</h3><p>강력하지만 성벽이 약해지거나 조준이 흔들리는 저주 6종.</p></div>
+        <div class="lv"><div class="ic">6</div><span class="rar">성장</span><h3>가디언 · 특성 트리</h3><p>가디언 6종, 영구 강화 11종, 다 찍을 수 없는 특성 트리와 궁극기 7종.</p></div>
+      </div>
+    </section>
 
-  <section id="features" aria-labelledby="features-title">
-    <h2 id="features-title">특징</h2>
-    <div class="features">
-      <div class="panel">
-        <h3>드래그 한 번으로 조준</h3>
-        <p>화면을 드래그해 대포를 겨누면 공이 벽과 몬스터 사이를 튕기며 적을 쓸어 냅니다. 몬스터 무리가 성벽을 무너뜨리기 전에 막아 내세요.</p>
+    <section class="gs" aria-labelledby="m-title">
+      <h2 id="m-title">모드 선택</h2>
+      <p class="lead">얼마나 멀리 갈지, 이 조건을 어떻게 풀지.</p>
+      <div class="modes">
+        <div class="mode" style="--c:#fee761"><b>1</b><h3>무한</h3><p>위험도 0~8단계를 하나씩 엽니다.</p></div>
+        <div class="mode" style="--c:#63c74d"><b>2</b><h3>스테이지</h3><p>숲·폐허·화산·설원 40개, 별 120개.</p></div>
+        <div class="mode" style="--c:#2ce8f5"><b>3</b><h3>일일 도전</h3><p>매일 바뀌는 규칙으로 한 판.</p></div>
+        <div class="mode" style="--c:#f6757a"><b>4</b><h3>주간 시즌</h3><p>매주 새 규칙, 브론즈부터 다이아.</p></div>
       </div>
-      <div class="panel">
-        <h3>매판 다른 빌드</h3>
-        <p>레벨이 오를 때마다 강화 47종 중 하나를 고릅니다. 화염·냉기·번개·독 속성, 폭발, 분열, 관통, 설치물, 성벽 포탑, 규칙을 바꾸는 전설과 대가가 따르는 저주까지.</p>
-      </div>
-      <div class="panel">
-        <h3>진화 11종 · 융합탄 6종</h3>
-        <p>두 강화를 올리면 공과 대포가 다른 무기로 변하는 진화가, 두 속성을 합치면 융합탄이 열립니다. 속성이 겹치면 터지는 반응 6가지와 태그 세트 11종도 있습니다.</p>
-      </div>
-      <div class="panel">
-        <h3>네 가지 모드</h3>
-        <p>끝없이 버티며 위험도를 올리는 무한 모드, 조건을 풀어 별을 모으는 스테이지 40개, 매일 규칙이 바뀌는 일일 도전, 매주 등급에 도전하는 주간 시즌.</p>
-      </div>
-      <div class="panel">
-        <h3>계정마다 다른 성장</h3>
-        <p>영구 강화 11종, 고유 능력이 다른 가디언(대포) 6종과 숙련도, 그리고 사방으로 뻗는 특성 트리. 다 찍을 수는 없으니 직접 누르는 궁극기 7종 중 무엇을 향할지 고르세요.</p>
-      </div>
-      <div class="panel">
-        <h3>몬스터 14종 · 보스 6종</h3>
-        <p>거미줄로 공을 늦추는 덫거미, 설치물을 부수는 파괴공, 공을 삼키는 공허의 눈. 보스를 쓰러뜨리면 그 판의 규칙을 바꾸는 유물 12종 중 하나를 고를 수 있습니다.</p>
-      </div>
-    </div>
+    </section>
 
-    <h2>이용 안내</h2>
-    <div class="panel">
-      <ul class="facts">
-        <li>무료 게임입니다. 광고는 부활·골드 2배 같은 보상을 원할 때만 골라서 보고, 판이 끝난 뒤 가끔 전면 광고가 나옵니다.</li>
-        <li>"광고 제거"를 한 번 구매하면 전면 광고가 사라지고 보상은 광고 없이 바로 받습니다.</li>
-        <li>회원가입·로그인이 없고, 진행 상황은 기기에만 저장됩니다. 인터넷 연결 없이도 플레이할 수 있습니다.</li>
-        <li>스킨은 모양만 바꾸고 능력치는 바꾸지 않습니다. 스킨은 판매하지 않고 플레이로 얻습니다.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="contact" aria-labelledby="contact-title">
-    <h2 id="contact-title">문의</h2>
-    <div class="panel">
-      <p style="margin:0">버그 제보, 의견, 개인정보 관련 문의는 메일로 보내 주세요.</p>
-      <p style="margin:8px 0 0"><a href="mailto:moospacecontact@gmail.com">moospacecontact@gmail.com</a></p>
-      <div class="btn-row">
-        <a class="btn blue small" href="privacy.html">개인정보처리방침</a>
+    <section class="gs" id="shots" aria-labelledby="s-title">
+      <h2 id="s-title">스크린샷</h2>
+      <p class="lead">옆으로 넘겨 보세요.</p>
+      <div class="shots">
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-2-boss.png" width="720" height="1280" alt="보스전: 용암 드레이크와 3연장포"></div><figcaption>5웨이브마다 보스</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-7-evolution.png" width="720" height="1280" alt="진화 획득 연출" loading="lazy"></div><figcaption>공과 대포가 바뀌는 진화</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-3-levelup.png" width="720" height="1280" alt="레벨업 강화 카드: 진화·전설·희귀" loading="lazy"></div><figcaption>레벨업마다 강화 선택</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-4-tree.png" width="720" height="1280" alt="특성 트리 화면" loading="lazy"></div><figcaption>특성 트리</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-5-stages.png" width="720" height="1280" alt="스테이지 목록 화면" loading="lazy"></div><figcaption>스테이지 40개</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-8-guardian.png" width="720" height="1280" alt="가디언 목록 화면" loading="lazy"></div><figcaption>가디언 6종</figcaption></figure>
+        <figure><div class="pframe"><img src="/bounce-guardian/img/shot-6-home.png" width="720" height="1280" alt="홈 화면" loading="lazy"></div><figcaption>홈</figcaption></figure>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <p class="credit">이 페이지의 도트 글꼴은 <a href="https://github.com/quiple/galmuri">Galmuri</a>(SIL OFL 1.1, <a href="fonts/OFL.txt">라이선스</a>)입니다.</p>
-</div>
+    <section class="final" aria-labelledby="p-title">
+      <h2 id="p-title">곧 출시!</h2>
+      <p>무료 게임입니다. 광고는 부활·골드 2배 같은 보상을 원할 때만 골라서 보고, 판이 끝난 뒤 가끔 전면 광고가 나옵니다. "광고 제거"를 한 번 구매하면 전면 광고가 사라지고 보상은 광고 없이 바로 받습니다. 회원가입이 없고 진행 상황은 기기에만 저장되며, 인터넷 연결 없이도 플레이할 수 있어요.</p>
+      <!-- GOOGLE PLAY: replace with the official badge after launch (see the comment at the top) -->
+      <div class="pbtns"><span class="pbtn" aria-disabled="true">Google Play <small>곧 출시</small></span></div>
+      <p class="fine"><a href="/bounce-guardian/privacy.html">개인정보처리방침</a> · <a href="mailto:moospacecontact@gmail.com">moospacecontact@gmail.com</a></p>
+    </section>
+    <div class="tail"></div>
+  </div>
 </main>
 
-<footer class="site-foot">
+<footer class="foot">
   <div class="wrap">
-    <p>바운스 가디언 · 무스페이스 (moospace) · <a href="mailto:moospacecontact@gmail.com">moospacecontact@gmail.com</a></p>
-    <p><a href="/">무스페이스 홈</a> · <a href="privacy.html">개인정보처리방침</a></p>
+    <div class="grid">
+      <div class="brand-col">
+        <a class="mark" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="20" cy="12" r="4.5" fill="currentColor"/></svg>moospace</a>
+        <p>모바일 게임을 만드는 개발사 무스페이스.</p>
+      </div>
+      <div><h4>게임</h4><ul><li><a href="/bounce-guardian/">바운스 가디언</a></li></ul></div>
+      <div><h4>정책</h4><ul><li><a href="/bounce-guardian/privacy.html">바운스 가디언 개인정보처리방침</a></li></ul></div>
+      <div><h4>문의</h4><ul><li><a href="mailto:moospacecontact@gmail.com">메일 보내기</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 moospace</span><span>도트 글꼴: <a href="https://github.com/quiple/galmuri">Galmuri</a> (SIL OFL 1.1, <a href="/bounce-guardian/fonts/OFL.txt">라이선스</a>)</span></div>
   </div>
 </footer>
 </body>
