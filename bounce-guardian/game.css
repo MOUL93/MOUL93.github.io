@@ -1,0 +1,113 @@
+/* Bounce Guardian pages: the game's own pixel look, on top of /assets/site.css.
+   Every rule is scoped under <main class="game bounce"> so the shared studio header and
+   footer stay neutral. Colours are the Endesga 32 palette the game uses (src/gfx/sprites.ts PAL).
+   Galmuri11 is a 12px bitmap design: use it at 12 / 24 / 36px so its pixels stay on the grid.
+   The font is loaded only by pages that link this file. */
+
+@font-face {
+  font-family: 'Galmuri11';
+  src: url('/bounce-guardian/fonts/Galmuri11.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+.bounce {
+  --ink: #181425;      /* K */
+  --panel: #262b44;    /* k */
+  --edge: #3a4466;     /* n */
+  --dim: #8b9bb4;      /* s */
+  --text: #c0cbdc;     /* l */
+  --white: #ffffff;    /* W */
+  --gold: #fee761;     /* Y */
+  --orange: #feae34;   /* y */
+  --rust: #be4a2f;     /* o */
+  --cyan: #2ce8f5;     /* T */
+  --blue: #0099db;     /* B */
+  --navy: #124e89;     /* b */
+  --green: #63c74d;    /* G */
+  --pixel: 'Galmuri11', ui-monospace, monospace;
+
+  display: block;
+  background: var(--ink);
+  color: var(--text);
+  padding-bottom: 72px;
+}
+/* the game's ink runs straight into the studio footer */
+.bounce + .site-foot { margin-top: 0; }
+
+/* Only for images drawn at a whole multiple of their pixel grid (icons). Screenshots and banners
+   are shown smaller than their files, where nearest-neighbour sampling would chew up the pixels. */
+.bounce .pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+.bounce a { color: var(--cyan); }
+.bounce a:hover { color: var(--white); }
+.bounce :focus-visible { outline-color: var(--gold); border-radius: 0; }
+
+/* ---- headings */
+.bounce h1, .bounce h2, .bounce h3 { font-family: var(--pixel); font-weight: 400; line-height: 1.4; letter-spacing: 0; }
+.bounce h1 { font-size: 36px; color: var(--white); margin: 0 0 8px; }
+.bounce h2 { font-size: 24px; color: var(--gold); margin: 48px 0 16px; }
+.bounce h3 { font-size: 24px; color: var(--white); margin: 0 0 8px; }
+@media (max-width: 420px) { .bounce h1 { font-size: 24px; } }
+
+.bounce .lead { font-size: 18px; color: var(--white); margin: 8px 0 0; }
+
+/* ---- panels: square corners, chunky edge */
+.bounce .panel {
+  background: var(--panel);
+  border: 4px solid var(--edge);
+  box-shadow: 0 4px 0 0 #0d0b14;
+  padding: 16px;
+}
+
+/* ---- buttons, like the game's (flat colour, darker bottom edge) */
+.bounce .btn {
+  min-height: 48px; padding: 0 20px; border-radius: 0;
+  font: 24px/1 var(--pixel);
+  color: var(--ink); background: var(--orange);
+  border: 0; border-bottom: 4px solid var(--rust);
+}
+.bounce .btn:hover { color: var(--ink); background: var(--orange); filter: brightness(1.08); }
+.bounce .btn.blue { background: var(--blue); color: var(--white); border-bottom-color: var(--navy); }
+.bounce .btn.small { font-size: 12px; min-height: 36px; padding: 0 14px; }
+.bounce .btn[aria-disabled='true'] { background: var(--edge); color: var(--dim); border-bottom-color: var(--panel); cursor: default; filter: none; }
+.bounce .btn-row { gap: 12px; margin-top: 20px; }
+
+/* ---- game page */
+.bounce .game-hero { padding: 24px 0 0; }
+.bounce .banner { display: block; width: 100%; border: 4px solid var(--edge); }
+.bounce .title-row { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
+.bounce .title-row img { width: 88px; height: 88px; border: 4px solid var(--edge); flex: none; } /* 80px icon + border */
+.bounce .title-row h1 { margin: 0; }
+.bounce .title-row .sub { font: 12px/1.4 var(--pixel); color: var(--dim); margin: 4px 0 0; }
+
+.bounce .store-note { font: 12px/1.6 var(--pixel); color: var(--dim); margin: 10px 0 0; }
+
+.bounce .shots {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(62%, 240px);
+  gap: 12px; overflow-x: auto; padding: 4px 0 12px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+}
+.bounce .shots figure { margin: 0; scroll-snap-align: start; }
+.bounce .shots img { display: block; width: 100%; aspect-ratio: 720 / 1280; border: 4px solid var(--edge); background: var(--panel); }
+.bounce .shots figcaption { font: 12px/1.5 var(--pixel); color: var(--dim); margin-top: 6px; }
+.bounce .shots-hint { font: 12px/1 var(--pixel); color: var(--dim); margin: 0 0 8px; }
+
+.bounce .features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.bounce .features h3 { font-size: 12px; color: var(--gold); margin-bottom: 6px; }
+.bounce .features p { margin: 0; font-size: 15px; }
+
+.bounce .facts { margin: 0; padding: 0; list-style: none; }
+.bounce .facts li { padding: 8px 0; border-bottom: 2px dashed var(--edge); }
+.bounce .facts li:last-child { border-bottom: 0; }
+
+.bounce .credit { font-size: 13px; color: var(--dim); margin: 32px 0 0; }
+
+/* ---- the privacy policy, in the game's style */
+.bounce.doc-page .doc h1 { font-size: 24px; margin-top: 40px; }
+.bounce.doc-page .doc h2 { font: 700 16px/1.4 var(--sans); color: var(--white); margin: 32px 0 8px; }
+.bounce.doc-page .doc .meta { color: var(--dim); }
+.bounce.doc-page .doc hr { border-top: 4px solid var(--edge); }
+.bounce .crumb { font: 12px/1 var(--pixel); margin: 0; padding-top: 24px; }
+.bounce .crumb a { color: var(--dim); text-decoration: none; }
+.bounce .crumb a:hover { color: var(--gold); }
